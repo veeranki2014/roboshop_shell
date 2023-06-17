@@ -6,7 +6,7 @@ echo -e "\e[34m Removing Old App Files \e[0m"
 rm -rf /usr/share/nginx/html/* >/tmp/roboshop.log
 
 echo -e "\e[34m Downloading Frontend Content \e[0m"
-curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip >/tmp/roboshop.log
+curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip 2>/tmp/roboshop.log
 
 echo -e "\e[34m Extracting Frontend Content \e[0m"
 cd /usr/share/nginx/html

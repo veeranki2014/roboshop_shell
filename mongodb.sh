@@ -1,5 +1,5 @@
 echo -e "\e[34m Setup Mongodb Repo \e[0m"
-cp mongodb.repo /ect/yum.repos.d/mongo.repo &>>/tmp/roboshop.log
+cp mongodb.repo /etc/yum.repos.d/mongo.repo &>>/tmp/roboshop.log
 
 echo -e "\e[34m Install MongoDB \e[0m"
 yum install mongodb-org -y &>>/tmp/roboshop.log

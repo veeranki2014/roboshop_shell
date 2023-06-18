@@ -1,0 +1,12 @@
+[Unit]
+Description = User Service
+
+[Service]
+User=roboshop
+Environment=MONGO=true
+Environment=MONGO_URL="mongodb://mongodb-dev.veerankitek.com:27017/user"
+ExecStart=/bin/node /app/server.js
+SyslogIdentifier=user
+
+[Install]
+WantedBy=multi-user.target

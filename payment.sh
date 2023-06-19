@@ -18,6 +18,9 @@ echo -e "\e[33m install Python  \e[0m"
 cd /app
 pip3.6 install -r requirements.txt  &>>/tmp/roboshop.log
 
+echo -e "\e[33m Load Payment Service \e[0m"
+cp /home/centos/roboshop_shell/payment.service /etc/systemd/system/payment.service  &>>/tmp/roboshop.log
+
 echo -e "\e[33m Restart Payment Service\e[0m"
 systemctl daemon-reload &>>/tmp/roboshop.log
 systemctl enable payment  &>>/tmp/roboshop.log

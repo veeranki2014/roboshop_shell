@@ -21,11 +21,6 @@ echo -e "\e[33m Copy Shipping service  \e[0m"
 ##copy shipping service
 cp /home/centos/roboshop_shell/shipping.service /etc/systemd/system/shipping.service
 
-echo -e "\e[33m start the shipping services   \e[0m"
-systemctl daemon-reload &>>/tmp/roboshop.log
-systemctl enable shipping &>>/tmp/roboshop.log
-systemctl restart shipping  &>>/tmp/roboshop.log
-
 echo -e "\e[33m Install MYSQL  \e[0m"
 yum install mysql -y  &>>/tmp/roboshop.log
 
@@ -33,4 +28,6 @@ echo -e "\e[33m  Load Mysql schema \e[0m"
 mysql -h mysql-dev.veerankitek.com -uroot -pRoboShop@1 < /app/schema/shipping.sql  &>>/tmp/roboshop.log
 
 echo -e "\e[33m Restart shipping services again  \e[0m"
+systemctl daemon-reload &>>/tmp/roboshop.log
+systemctl enable shipping &>>/tmp/roboshop.log
 systemctl restart shipping  &>>/tmp/roboshop.log

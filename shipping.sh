@@ -5,6 +5,7 @@ echo -e "\e[33m  Create App User \e[0m"
 useradd roboshop  &>>/tmp/roboshop.log
 
 echo -e "\e[33m Create App Directory  \e[0m"
+rm -rf /app*  &>>/tmp/roboshop.log
 mkdir /app  &>>/tmp/roboshop.log
 
 echo -e "\e[33m  Copy APP Code \e[0m"

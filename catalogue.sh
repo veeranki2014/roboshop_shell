@@ -1,43 +1,46 @@
-echo -e "\e[33m Setup NodeJS Repos \e[0m"
+source common.sh
+component=catalogue
+
+echo -e "${colour} Setup NodeJS Repos ${nocolour}"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/roboshop.log
 
-echo -e "\e[33m Install NodeJS \e[0m"
-yum install nodejs -y &>>/tmp/roboshop.log
+echo -e "${colour} Install NodeJS ${nocolour}"
+yum install nodejs -y &>>${log_file}
 
-echo -e "\e[33m Add App user \e[0m"
-useradd roboshop &>>/tmp/roboshop.log
+echo -e "${colour} Add App user ${nocolour}"
+useradd roboshop &>>${log_file}
 
-echo -e "\e[33m Remove Old Code \e[0m"
-rm -rf /app/* &>>/tmp/roboshop.log
-mkdir /app &>>/tmp/roboshop.log
+echo -e "${colour} Remove Old Code ${nocolour}"
+rm -rf ${app_path}/* &>>${log_file}
+mkdir ${app_path} &>>${log_file}
 
-echo -e "\e[33m Download App Code \e[0m"
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>>/tmp/roboshop.log
+echo -e "${colour} Download App Code ${nocolour}"
+curl -o /tmp/$catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/$catalogue.zip &>>${log_file}
 
-echo -e "\e[33m Extract the App Code \e[0m"
-cd /app
-unzip /tmp/catalogue.zip &>>/tmp/roboshop.log
+echo -e "${colour} Extract the App Code ${nocolour}"
+cd ${app_path}
+unzip /tmp/$catalogue.zip &>>${log_file}
 
-echo -e "\e[33m Install NodeJS \e[0m"
-cd /app
-npm install &>>/tmp/roboshop.log
+echo -e "${colour} Install NodeJS ${nocolour}"
+cd ${app_path}
+npm install &>>${log_file}
 
-echo -e "\e[33m  Create SystemD catalogue Service \e[0m"
-cp /home/centos/roboshop_shell/catalogue.service /etc/systemd/system/catalogue.service &>>/tmp/roboshop.log
+echo -e "${colour}  Create SystemD $catalogue Service ${nocolour}"
+cp /home/centos/roboshop_shell/$catalogue.service /etc/systemd/system/$catalogue.service &>>${log_file}
 
-echo -e "\e[33m  Enable and restart catalogue \e[0m"
-systemctl daemon-reload &>>/tmp/roboshop.log
-systemctl enable catalogue &>>/tmp/roboshop.log
-systemctl restart catalogue &>>/tmp/roboshop.log
+echo -e "${colour}  Enable and restart $catalogue ${nocolour}"
+systemctl daemon-reload &>>${log_file}
+systemctl enable $catalogue &>>${log_file}
+systemctl restart $catalogue &>>${log_file}
 
-echo -e "\e[33m  Create SystemD catalogue Service \e[0m"
-cp /home/centos/roboshop_shell/mongodb.repo /etc/yum.repos.d/mongod.repo &>>/tmp/roboshop.log
+echo -e "${colour}  Create SystemD $catalogue Service ${nocolour}"
+cp /home/centos/roboshop_shell/mongodb.repo /etc/yum.repos.d/mongod.repo &>>${log_file}
 
-echo -e "\e[33m  Create SystemD catalogue Service \e[0m"
-yum install mongodb-org-shell -y &>>/tmp/roboshop.log &>>/tmp/roboshop.log
+echo -e "${colour}  Create SystemD $catalogue Service ${nocolour}"
+yum install mongodb-org-shell -y &>>${log_file} &>>${log_file}
 
-echo -e "\e[33m  Create SystemD catalogue Service \e[0m"
-mongo --host mongodb-dev.veerankitek.com </app/schema/catalogue.js &>>/tmp/roboshop.log
+echo -e "${colour}  Create SystemD $catalogue Service ${nocolour}"
+mongo --host mongodb-dev.veerankitek.com <${app_path}/schema/$catalogue.js &>>${log_file}
 
 
 

@@ -30,14 +30,7 @@ systemctl daemon-reload &>>/tmp/roboshop.log
 systemctl enable cart &>>/tmp/roboshop.log
 systemctl restart cart &>>/tmp/roboshop.log
 
-echo -e "\e[33m  Create SystemD cart Service \e[0m"
-cp /home/centos/roboshop_shell/mongodb.repo /etc/yum.repos.d/mongod.repo &>>/tmp/roboshop.log
 
-echo -e "\e[33m  Create SystemD catalogue Service \e[0m"
-yum install mongodb-org-shell -y &>>/tmp/roboshop.log &>>/tmp/roboshop.log
-
-echo -e "\e[33m  Create SystemD catalogue Service \e[0m"
-mongo --host mongodb-dev.veerankitek.com </app/schema/cart.js &>>/tmp/roboshop.log
 
 
 

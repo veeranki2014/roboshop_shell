@@ -7,7 +7,7 @@ app_presetup(){
   echo -e "${colour} Add App user ${nocolour}"
   id roboshop &>>${log_file}
   if [ $id -ne 0 ]; then
-  useradd roboshop &>>${log_file}
+    useradd roboshop &>>${log_file}
   fi
   if [ $? -eq 0 ]; then
     echo SUCCESS
